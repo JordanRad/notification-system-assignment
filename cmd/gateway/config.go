@@ -24,5 +24,5 @@ type serverConfig struct {
 }
 
 type kafkaConfig struct {
-	URL string `envconfig:"KAFKA_URL" default:"localhost:9092"`
+	URL string `envconfig:"KAFKA_URL" default:"localhost:29092"`
 }

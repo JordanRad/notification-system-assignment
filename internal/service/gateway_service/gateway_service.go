@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/JordanRad/notification-system-assignment/internal/notification"
 )
 
 type Notification struct {
@@ -41,7 +43,7 @@ func (s *Service) HandleNotification(w http.ResponseWriter, r *http.Request) {
 	// Process the payload based on the message_type
 	switch messageType {
 	case "email":
-		var emailPayload EmailPayload
+		var emailPayload notification.EmailPayload
 		err := json.NewDecoder(r.Body).Decode(&emailPayload)
 		if err != nil {
 			http.Error(w, "Bad Request. Invalid Email JSON.", http.StatusBadRequest)
@@ -56,7 +58,7 @@ func (s *Service) HandleNotification(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case "sms":
-		var smsPayload SmsPayload
+		var smsPayload notification.SmsPayload
 		err := json.NewDecoder(r.Body).Decode(&smsPayload)
 		if err != nil {
 			http.Error(w, "Bad Request. Invalid SMS JSON.", http.StatusBadRequest)
@@ -71,7 +73,7 @@ func (s *Service) HandleNotification(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case "slack":
-		var slackPayload SlackPayload
+		var slackPayload notification.SlackPayload
 		err := json.NewDecoder(r.Body).Decode(&slackPayload)
 		if err != nil {
 			http.Error(w, "Bad Request. Invalid Slack JSON.", http.StatusBadRequest)
