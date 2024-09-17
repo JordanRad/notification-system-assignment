@@ -37,6 +37,10 @@ This software system can be easily scalled horizontally by adding more distances
 
 
 ### Software components
+
+#### Gateway Service
+The Gateway Service services accepts requests for new notifications. It contains:
+- **MessageBusProducer**: Responsible for publishing messages to a Kafka topic, so they can be further processed by the dispatchers.
 #### Dispatcher Service
 
 The Dispatcher Service processes messages from Kafka topics and sends notifications. It contains:
